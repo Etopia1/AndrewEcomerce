@@ -14,7 +14,7 @@ const UserVerifyOtpPass = () => {
   const [seconds, setSeconds] = useState(59);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const url = 'http://localhost:2030/api/v1';
+  const url = 'https://andrewecomerceback.onrender.com/api/v1';
 
   useEffect(() => {
     Aos.init({ duration: 500 });

@@ -27,7 +27,7 @@
 
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:2030/api/v1/user-login",
+//         "https://andrewecomerceback.onrender.com/api/v1/user-login",
 //         { email, password }
 //       );
 
@@ -52,7 +52,7 @@
 
 //   // 🔹 Google Login (Redirect to backend route)
 //   const handleGoogleLogin = () => {
-//     window.location.href = "http://localhost:2030/api/v1/auth/google";
+//     window.location.href = "https://andrewecomerceback.onrender.com/api/v1/auth/google";
 //   };
 
 //   return (
@@ -183,7 +183,7 @@
 //     if (token && userId) {
 //       // Optional: fetch user info if backend doesn't send it
 //       axios
-//         .get(`http://localhost:2030/api/v1/user/${userId}`, {
+//         .get(`https://andrewecomerceback.onrender.com/api/v1/user/${userId}`, {
 //           headers: { Authorization: `Bearer ${token}` },
 //         })
 //         .then((res) => {
@@ -208,7 +208,7 @@
 //     setLoading(true);
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:2030/api/v1/user-login",
+//         "https://andrewecomerceback.onrender.com/api/v1/user-login",
 //         { email, password }
 //       );
 
@@ -233,7 +233,7 @@
 
 //   // 🔹 Google login (redirect)
 //   const handleGoogleLogin = () => {
-//     window.location.href = "http://localhost:2030/api/v1/auth/google";
+//     window.location.href = "https://andrewecomerceback.onrender.com/api/v1/auth/google";
 //   };
 
 //   return (
@@ -370,7 +370,7 @@
   
 //       try {
 //         const res = await axios.get(
-//           `http://localhost:2030/api/v1/user-get/${userId}`,
+//           `https://andrewecomerceback.onrender.com/api/v1/user-get/${userId}`,
 //           {
 //             headers: { Authorization: `Bearer ${token}` },
 //           }
@@ -404,7 +404,7 @@
 
 // //   if (token && userId) {
 // //     axios
-// //       .get(`http://localhost:2030/api/v1/user/676b19eb8d56c35fba7ca64e`, {
+// //       .get(`https://andrewecomerceback.onrender.com/api/v1/user/676b19eb8d56c35fba7ca64e`, {
 // //         headers: { Authorization: `Bearer ${token}` },
 // //       })
 // //       .then((res) => {
@@ -431,7 +431,7 @@
 
 //   //   if (token && userId) {
 //   //     axios
-//   //       .get(`http://localhost:2030/api/v1/user/${userId}`, {
+//   //       .get(`https://andrewecomerceback.onrender.com/api/v1/user/${userId}`, {
 //   //         headers: { Authorization: `Bearer ${token}` },
 //   //       })
 //   //       .then((res) => {
@@ -463,7 +463,7 @@
 //     setLoading(true);
 //     try {
 //       const response = await axios.post(
-//         "http://localhost:2030/api/v1/user-login",
+//         "https://andrewecomerceback.onrender.com/api/v1/user-login",
 //         { email, password }
 //       );
 
@@ -494,7 +494,7 @@
 
 //   // 🔹 Google login (redirect)
 //   const handleGoogleLogin = () => {
-//     window.location.href = "http://localhost:2030/api/v1/auth/google";
+//     window.location.href = "https://andrewecomerceback.onrender.com/api/v1/auth/google";
 //   };
 
 //   return (
@@ -631,7 +631,7 @@ const UserLogin = () => {
         setLoading(true);
         try {
           const res = await axios.get(
-            `http://localhost:2030/api/v1/user-get/${userId}`,
+            `https://andrewecomerceback.onrender.com/api/v1/user-get/${userId}`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
 
@@ -673,7 +673,7 @@ const UserLogin = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:2030/api/v1/user-login",
+        "https://andrewecomerceback.onrender.com/api/v1/user-login",
         { email, password }
       );
 
@@ -702,7 +702,7 @@ const UserLogin = () => {
 
   // 🔹 Google login redirect
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:2030/api/v1/auth/google";
+    window.location.href = "https://andrewecomerceback.onrender.com/api/v1/auth/google";
   };
 
   return (

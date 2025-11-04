@@ -5,7 +5,7 @@
 // import { useSelector } from "react-redux";
 // import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-// const API_URL = "http://localhost:2030/api/v1";
+// const API_URL = "https://andrewecomerceback.onrender.com/api/v1";
 // const PINK = "#ff4d73";
 
 // const FlashSale = () => {
@@ -239,7 +239,7 @@ import { useSelector } from "react-redux";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:2030/api/v1";
+const API_URL = "https://andrewecomerceback.onrender.com/api/v1";
 const PINK = "#ff4d73";
 
 const FlashSale = () => {

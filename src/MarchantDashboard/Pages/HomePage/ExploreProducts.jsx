@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const PINK = "#ff4d73";
-const API_URL = "http://localhost:2030/api/v1";
+const API_URL = "https://andrewecomerceback.onrender.com/api/v1";
 
 const ExploreProducts = () => {
   const [products, setProducts] = useState([]);

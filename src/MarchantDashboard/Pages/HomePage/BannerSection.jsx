@@ -14,11 +14,11 @@ const BannerSection = () => {
         {/* Text Section */}
         <div className="flex flex-col items-start justify-center px-8 py-10 md:py-16 md:w-1/2 text-gray-900">
           <h3 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-            Enhance Your <br /> Music Experience
+            Enhance Your <br /> Shopping Experience
           </h3>
           <p className="text-base md:text-lg mb-6 text-gray-700">
-            Enjoy crystal-clear sound and long-lasting performance with our
-            latest Bluetooth speakers.
+               Discover our latest collection of elegant handbags — crafted for style,
+            comfort, and durability. Perfect for every occasion.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

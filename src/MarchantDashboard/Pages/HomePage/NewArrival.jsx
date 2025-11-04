@@ -151,7 +151,7 @@ const NewArrival = () => {
   // ✅ Fetch API
   useEffect(() => {
     axios
-      .get("http://localhost:2030/api/v1/topproducts")
+      .get("https://andrewecomerceback.onrender.com/api/v1/topproducts")
       .then((res) => setTopProducts(res.data.data || []))
       .catch((err) => console.error("Error fetching top products:", err));
   }, []);
@@ -282,7 +282,7 @@ const NewArrival = () => {
                 animate="visible"
                 transition={{ delay: 0.6, duration: 0.6 }}
                 whileHover={{ scale: 1.03 }}
-                className="relative rounded-2xl overflow-hidden bg-gray-100 h-[240px] sm:h-[280px] md:h-[320px] shadow-md"
+                className="relative rounded-2xl overflow-hidden bg-gray-100 h-[240px] sm:h-[280px] md:h-[290px] shadow-md"
               >
                 <motion.img
                   src={safeArrivals[3].productImage}

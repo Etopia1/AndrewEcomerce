@@ -8,7 +8,7 @@
 
 //   useEffect(() => {
 //     axios
-//       .get("http://localhost:2030/api/v1/category")
+//       .get("https://andrewecomerceback.onrender.com/api/v1/category")
 //       .then((res) => setCategories(res.data.data))
 //       .catch((err) => console.log(err));
 //   }, []);
@@ -70,7 +70,7 @@ const BrowseByCategory = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:2030/api/v1/category");
+        const res = await axios.get("https://andrewecomerceback.onrender.com/api/v1/category");
         if (res.data && res.data.data) {
           setCategories(res.data.data);
         }

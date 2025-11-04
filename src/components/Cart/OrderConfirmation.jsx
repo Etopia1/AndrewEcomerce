@@ -32,7 +32,7 @@ const OrderConfirmation = () => {
     setLoading(true);
 
     axios
-      .get("http://localhost:2030/api/v1/viewcart", {
+      .get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,291 +51,8 @@ const OrderConfirmation = () => {
   
 
 
-// const handlePlaceOrder = async () => {
-//   if(!customerFirstName|| !customerLastName || !customerAddress || !customerPhoneNumber || !city || !country || !paymentMethod ||!totalPrice || cartItems.length === 0){
-//     alert("Please fill all details ")
-//   } {
-//     const orderData = {
-//       customerFirstName,
-//       customerLastName,
-//       customerAddress,
-//       customerPhoneNumber,
-//       city,
-//       country,
-//       paymentDetails,
-//       paymentMethod,
-//       cartItems,
-//       totalPrice,
-//     };
-//     try {
-//       if (paymentMethod === "Bank") {
-//         await payKorapay(orderData); // Await if you're handling the payment asynchronously
-//       } else {
-//         const response = await axios.post("http://localhost:2030/api/v1/confirm-order", orderData, {
-//           headers: { Authorization: `Bearer ${token}` },
-//         });
-//         alert("Order placed successfully!");
-//         setLoading(false)
-//         console.log(response.data);
-//       }
-//     } catch (error) {
-//       console.error("Order failed:", error);
-//       setLoading(false)
-//       alert("Order failed. Please try again.");
-//     }
-//   }
- 
 
- 
-// };
 
-// // The payment function for Korapay integration
-// const payKorapay = async (orderData) => {
-//   try {
-//     window.Korapay.initialize({
-//       key: import.meta.env.KORA_API,
-//       reference: `004${Date.now()}`,
-//       amount: totalPrice + 1051,
-//       currency: "NGN",
-//       customer: {
-//         name: username,
-//         email: email,
-//       },
-//       onSuccess: async (response) => {
-//         console.log("Payment Successful", response);
-
-//         // Explicit structure for the payment details
-//         const paymentDetails = {
-//           reference: response.reference,
-//           amount: response.amount,
-//           transactionDate: response.transaction_date,
-//           status: response.status,
-//         };
-
-//         try {
-//           // Send order data to the backend with payment details
-//           const orderResponse = await axios.post(
-//             "http://localhost:2030/api/v1/confirm-order",
-//             {
-//               customerFirstName,
-//               customerLastName,
-//               customerAddress,
-//               customerPhoneNumber,
-//               city,
-//               country,
-//               paymentMethod,
-//               totalPrice,
-//               cartItems,
-//               paymentDetails, // Include only the payment details object here
-//             },
-//             {
-//               headers: { Authorization: `Bearer ${token}` },
-//             }
-//           );
-//           alert("Order placed successfully!");
-//           console.log(orderResponse.data);
-//         } catch (error) {
-//           console.error("Order failed:", error);
-//           alert("Order failed. Please try again.");
-//         }
-//       },
-//       onFailure: (response) => {
-//         console.error("Payment Failed", response);
-//         alert("Payment failed. Please try again.");
-//       },
-//     });
-//   } catch (error) {
-//     console.error("Payment initialization failed:", error);
-//     alert("An error occurred during payment initialization. Please try again.");
-//   }
-// };
-
-// const handlePlaceOrder = async () => {
-//   // Validation for empty cart and missing details
-//   if (
-//     !customerFirstName ||
-//     !customerLastName ||
-//     !customerAddress ||
-//     !customerPhoneNumber ||
-//     !city ||
-//     !country 
-//   ) {
-//     toast.error("Please fill all details.");
-//   }
-
-//   if (cartItems.length === 0) {
-//     toast.error("Your cart is empty. Add items to the cart before placing an order.");
-//   }
-
-//   const orderData = {
-//     customerFirstName,
-//     customerLastName,
-//     customerAddress,
-//     customerPhoneNumber,
-//     city,
-//     country,
-//     paymentDetails: null, // Set to null initially; update after successful payment
-//     paymentMethod,
-//     cartItems,
-//     totalPrice,
-//   };
-
-//   try {
-//     if (paymentMethod === "Bank") {
-//       await payKorapay(orderData); // Handle Korapay payment
-//     } else {
-//       const response = await axios.post(
-//         "http://localhost:2030/api/v1/confirm-order",
-//         { ...orderData },
-//         {
-//           headers: { Authorization: `Bearer ${token}` },
-//         }
-//       );
-//       toast.error("Order placed successfully!");
-//       console.log(response.data);
-//     }
-//   } catch (error) {
-//     console.error("Order failed:", error);
-//     toast.error("Order failed. Please try again.");
-//   }
-// };
-
-// // Payment function for Korapay integration
-// const payKorapay = async (orderData) => {
-//   if (
-//     !customerFirstName ||
-//     !customerLastName ||
-//     !customerAddress ||
-//     !customerPhoneNumber ||
-//     !city ||
-//     !country 
-//   ) {
-//     toast.error("Please fill all details.");
-//   }
-//   let paymentProcessed = false;
-//    // Flag to prevent duplicate requests
-
-//   try {
-//     window.Korapay.initialize({
-//       key: "pk_test_htjJVR9pkM4NVDhx39vB8meFVyYJzxvP345Vsrpk",
-//       reference: `004${Date.now()}`,
-//       amount: totalPrice + 1050,
-//       currency: "USD",
-//       customer: {
-//         name: username,
-//         email: email,
-//       },
-//       onSuccess: async (response) => {
-//         if (paymentProcessed) return; // Prevent duplicate POST requests
-//         paymentProcessed = true;
-
-//         console.log("Payment Successful", response);
-
-//         // Structure the payment details
-//         const paymentDetails = {
-//           reference: response.reference,
-//           amount: response.amount,
-//           transactionDate: response.transaction_date,
-//           status: response.status,
-//         };
-
-//         try {
-//           // Update order data with payment details and confirm order
-//           const orderResponse = await axios.post(
-//             "http://localhost:2030/api/v1/confirm-order",
-//             { ...orderData, paymentDetails },
-//             {
-//               headers: { Authorization: `Bearer ${token}` },
-//             }
-//           );
-//           alert("Order placed successfully!");
-//           console.log(orderResponse.data);
-//         } catch (error) {
-//           console.error("Order failed:", error);
-//           alert("Order failed. Please try again.");
-//         }
-//       },
-//       onFailure: (response) => {
-//         console.error("Payment Failed", response);
-//         alert("Payment failed. Please try again.");
-//       },
-//     });
-//   } catch (error) {
-//     console.error("Payment initialization failed:", error);
-//     alert("An error occurred during payment initialization. Please try again.");
-//   }
-// };
-
-// Modify the handlePlaceOrder function
-// const handlePlaceOrder = async () => {
-//   // Validation for empty cart and missing details
-//   if (
-//     !customerFirstName ||
-//     !customerLastName ||
-//     !customerAddress ||
-//     !customerPhoneNumber ||
-//     !city ||
-//     !country
-//   ) {
-//     Swal.fire({
-//       icon: 'error',
-//       title: 'Oops...',
-//       text: 'Please fill all details.',
-//     });
-//     return; // Prevent further execution if validation fails
-//   }
-
-//   if (cartItems.length === 0) {
-//     Swal.fire({
-//       icon: 'error',
-//       title: 'Oops...',
-//       text: 'Your cart is empty. Add items to the cart before placing an order.',
-//     });
-//     return; // Prevent further execution if cart is empty
-//   }
-
-//   const orderData = {
-//     customerFirstName,
-//     customerLastName,
-//     customerAddress,
-//     customerPhoneNumber,
-//     city,
-//     country,
-//     paymentDetails: null, // Set to null initially; update after successful payment
-//     paymentMethod,
-//     cartItems,
-//     totalPrice,
-//   };
-
-//   try {
-//     if (paymentMethod === "Bank") {
-//       await payKorapay(orderData); // Handle Korapay payment
-//     } else {
-//       const response = await axios.post(
-//         "http://localhost:2030/api/v1/confirm-order",
-//         { ...orderData },
-//         {
-//           headers: { Authorization: `Bearer ${token}` },
-//         }
-//       );
-//       Swal.fire({
-//         icon: 'success',
-//         title: 'Order placed successfully!',
-//         text: 'Your order has been placed.',
-//       });
-//       console.log(response.data);
-//     }
-//   } catch (error) {
-//     console.error("Order failed:", error);
-//     Swal.fire({
-//       icon: 'error',
-//       title: 'Order failed',
-//       text: 'Please try again.',
-//     });
-//   }
-// };
-
-// // Modify the payKorapay function
 // const payKorapay = async (orderData) => {
 //   if (
 //     !customerFirstName ||
@@ -355,10 +72,13 @@ const OrderConfirmation = () => {
 
 //   let paymentProcessed = false; // Flag to prevent duplicate requests
 
+//   // Set loading state to true
+//   setLoading(true);
+
 //   try {
 //     window.Korapay.initialize({
 //       key: "pk_test_htjJVR9pkM4NVDhx39vB8meFVyYJzxvP345Vsrpk",
-//       reference: `004${Date.now()}`,
+//       reference: `005658654464${Date.now()}`,
 //       amount: totalPrice + 1050,
 //       currency: "USD",
 //       customer: {
@@ -382,7 +102,7 @@ const OrderConfirmation = () => {
 //         try {
 //           // Update order data with payment details and confirm order
 //           const orderResponse = await axios.post(
-//             "http://localhost:2030/api/v1/confirm-order",
+//             "https://andrewecomerceback.onrender.com/api/v1/confirm-order",
 //             { ...orderData, paymentDetails },
 //             {
 //               headers: { Authorization: `Bearer ${token}` },
@@ -394,6 +114,9 @@ const OrderConfirmation = () => {
 //             text: 'Your order has been placed.',
 //           });
 //           console.log(orderResponse.data);
+//           setTimeout(()=>(
+//             Nav("/")
+//           ), 2000)
 //         } catch (error) {
 //           console.error("Order failed:", error);
 //           Swal.fire({
@@ -419,102 +142,29 @@ const OrderConfirmation = () => {
 //       title: 'An error occurred',
 //       text: 'Please try again.',
 //     });
+//   } finally {
+//     // Reset the loading state to false
+//     setLoading(false);
 //   }
 // };
-
-const payKorapay = async (orderData) => {
-  if (
-    !customerFirstName ||
-    !customerLastName ||
-    !customerAddress ||
-    !customerPhoneNumber ||
-    !city ||
-    !country
-  ) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: 'Please fill all details.',
-    });
+const payKorapay = () => {
+  if (!window.Korapay) {
+    console.error("Korapay script not loaded yet!");
     return;
   }
 
-  let paymentProcessed = false; // Flag to prevent duplicate requests
-
-  // Set loading state to true
-  setLoading(true);
-
-  try {
-    window.Korapay.initialize({
-      key: "pk_test_htjJVR9pkM4NVDhx39vB8meFVyYJzxvP345Vsrpk",
-      reference: `005658654464${Date.now()}`,
-      amount: totalPrice + 1050,
-      currency: "USD",
-      customer: {
-        name: username,
-        email: email,
-      },
-      onSuccess: async (response) => {
-        if (paymentProcessed) return; // Prevent duplicate POST requests
-        paymentProcessed = true;
-
-        console.log("Payment Successful", response);
-
-        // Structure the payment details
-        const paymentDetails = {
-          reference: response.reference,
-          amount: response.amount,
-          transactionDate: response.transaction_date,
-          status: response.status,
-        };
-
-        try {
-          // Update order data with payment details and confirm order
-          const orderResponse = await axios.post(
-            "http://localhost:2030/api/v1/confirm-order",
-            { ...orderData, paymentDetails },
-            {
-              headers: { Authorization: `Bearer ${token}` },
-            }
-          );
-          Swal.fire({
-            icon: 'success',
-            title: 'Order placed successfully!',
-            text: 'Your order has been placed.',
-          });
-          console.log(orderResponse.data);
-          setTimeout(()=>(
-            Nav("/")
-          ), 2000)
-        } catch (error) {
-          console.error("Order failed:", error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Order failed',
-            text: 'Please try again.',
-          });
-        }
-      },
-      onFailure: (response) => {
-        console.error("Payment Failed", response);
-        Swal.fire({
-          icon: 'error',
-          title: 'Payment failed',
-          text: 'Please try again.',
-        });
-      },
-    });
-  } catch (error) {
-    console.error("Payment initialization failed:", error);
-    Swal.fire({
-      icon: 'error',
-      title: 'An error occurred',
-      text: 'Please try again.',
-    });
-  } finally {
-    // Reset the loading state to false
-    setLoading(false);
-  }
+  window.Korapay.initialize({
+    key: "pk_test_htjJVR9pkM4NVDhx39vB8meFVyYJzxvP345Vsrpk",
+    amount: totalPrice * 100,
+    currency: "NGN",
+    reference: `ref_${Date.now()}`,
+    customer: {
+      name: user.name,
+      email: user.email,
+    },
+    onClose: () => console.log("Payment closed"),
+    onSuccess: () => console.log("Payment successful"),
+  });
 };
 
 const handlePlaceOrder = async () => {
@@ -565,7 +215,7 @@ const handlePlaceOrder = async () => {
       await payKorapay(orderData); // Handle Korapay payment
     } else {
       const response = await axios.post(
-        "http://localhost:2030/api/v1/confirm-order",
+        "https://andrewecomerceback.onrender.com/api/v1/confirm-order",
         { ...orderData },
         {
           headers: { Authorization: `Bearer ${token}` },

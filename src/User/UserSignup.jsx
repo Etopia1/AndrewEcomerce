@@ -193,7 +193,7 @@
 // import { BeatLoader } from "react-spinners";
 // import { jwtDecode } from "jwt-decode";
 
-// const BASE_URL = "http://localhost:2030";
+// const BASE_URL = "https://andrewecomerceback.onrender.com";
 
 // const UserSignup = () => {
 //   const [fullName, setFullName] = useState("");
@@ -353,7 +353,7 @@ import { BeatLoader } from "react-spinners";
 import {jwtDecode} from "jwt-decode"; // ✅ make sure this is installed
 // npm install jwt-decode
 
-const BASE_URL = "http://localhost:2030";
+const BASE_URL = "https://andrewecomerceback.onrender.com";
 
 const UserSignup = () => {
   const [fullName, setFullName] = useState("");

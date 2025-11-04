@@ -153,7 +153,7 @@ const CategoryProducts = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://new-ecomer-ce-app-backend2.vercel.app/api/v1/category/${id}`)
+      .get(`https://andrewecomerceback.onrender.com/api/v1/category/${id}`)
       .then((response) => {
         setProducts(response.data.data.products);
         setLoading(false);
@@ -172,7 +172,7 @@ const CategoryProducts = () => {
 
     axios
       .post(
-        "https://new-ecomer-ce-app-backend2.vercel.app/api/v1/addtocart",
+        "https://andrewecomerceback.onrender.com/api/v1/addtocart",
         { productId, quantity },
         {
           headers: {

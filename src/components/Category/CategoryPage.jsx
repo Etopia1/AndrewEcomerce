@@ -16,7 +16,7 @@ const CategoryPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://new-ecomer-ce-app-backend2.vercel.app/api/v1/category")
+      .get("https://andrewecomerceback.onrender.com/api/v1/category")
       .then((response) => {
         setCategories(response.data.data); // Set categories on successful response
         setLoading(false);

@@ -22,7 +22,7 @@
 // //     setLoading(true);
 
 // //     axios
-// //       .get("http://localhost:2030/api/v1/viewcart", {
+// //       .get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
 // //         headers: {
 // //           Authorization: `Bearer ${token}`,
 // //         },
@@ -42,7 +42,7 @@
 // //   const handleeCheckout = () => {
 // //     setLoading(true); // Optionally show a loading indicator while waiting for the API response
 // //     axios
-// //       .post("http://localhost:2030/api/v1/checkout", {}, {
+// //       .post("https://andrewecomerceback.onrender.com/api/v1/checkout", {}, {
 // //         headers: {
 // //           Authorization: `Bearer ${token}`,  
 // //         },
@@ -65,7 +65,7 @@
 
  
 
-// //     axios.post( "http://localhost:2030/api/v1/removeitem",
+// //     axios.post( "https://andrewecomerceback.onrender.com/api/v1/removeitem",
 // //         { productId },
 // //         {
 // //           headers: {
@@ -94,7 +94,7 @@
 
 // //     axios
 // //       .post(
-// //         "http://localhost:2030/api/v1/item-increase",
+// //         "https://andrewecomerceback.onrender.com/api/v1/item-increase",
 // //         { productId },
 // //         {
 // //           headers: {
@@ -122,7 +122,7 @@
 
 // //     axios
 // //       .post(
-// //         "http://localhost:2030/api/v1/item-decrease",
+// //         "https://andrewecomerceback.onrender.com/api/v1/item-decrease",
 // //         { productId },
 // //         {
 // //           headers: {
@@ -148,7 +148,7 @@
 
 // //     axios
 // //       .post(
-// //         "http://localhost:2030/api/v1/clearcart",
+// //         "https://andrewecomerceback.onrender.com/api/v1/clearcart",
 // //         {},
 // //         {
 // //           headers: {
@@ -214,7 +214,7 @@
   //   setLoading(true);
   //   try {
   //     const response = await axios.post(
-  //       'http://localhost:2030/api/v1/checkout', 
+  //       'https://andrewecomerceback.onrender.com/api/v1/checkout', 
   //       {},
   //       {
   //         headers: {
@@ -352,7 +352,7 @@
 //   useEffect(() => {
 //     setLoading(true);
 //     axios
-//       .get('http://localhost:2030/api/v1/viewcart', {
+//       .get('https://andrewecomerceback.onrender.com/api/v1/viewcart', {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },
@@ -372,7 +372,7 @@
 //   const handleRemoveItem = (productId) => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/removeitem',
+//         'https://andrewecomerceback.onrender.com/api/v1/removeitem',
 //         { productId },
 //         {
 //           headers: {
@@ -393,7 +393,7 @@
 //   const handleIncreaseQuantity = (productId) => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/item-increase',
+//         'https://andrewecomerceback.onrender.com/api/v1/item-increase',
 //         { productId },
 //         {
 //           headers: {
@@ -415,7 +415,7 @@
 //   const handleDecreaseQuantity = (productId) => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/item-decrease',
+//         'https://andrewecomerceback.onrender.com/api/v1/item-decrease',
 //         { productId },
 //         {
 //           headers: {
@@ -437,7 +437,7 @@
 //   const handleClearCart = () => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/clearcart',
+//         'https://andrewecomerceback.onrender.com/api/v1/clearcart',
 //         {},
 //         {
 //           headers: {
@@ -460,7 +460,7 @@
 //     setLoading(true);
 //     try {
 //       const response = await axios.post(
-//         'http://localhost:2030/api/v1/checkout',
+//         'https://andrewecomerceback.onrender.com/api/v1/checkout',
 //         {},
 //         {
 //           headers: {
@@ -639,7 +639,7 @@
 //   useEffect(() => {
 //     setLoading(true);
 //     axios
-//       .get('http://localhost:2030/api/v1/viewcart', {
+//       .get('https://andrewecomerceback.onrender.com/api/v1/viewcart', {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },
@@ -659,7 +659,7 @@
   // const handleRemoveItem = (productId) => {
   //   axios
   //     .post(
-  //       'http://localhost:2030/api/v1/removeitem',
+  //       'https://andrewecomerceback.onrender.com/api/v1/removeitem',
   //       { productId },
   //       {
   //         headers: {
@@ -680,7 +680,7 @@
 //   const handleIncreaseQuantity = (productId) => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/item-increase',
+//         'https://andrewecomerceback.onrender.com/api/v1/item-increase',
 //         { productId },
 //         {
 //           headers: {
@@ -702,7 +702,7 @@
 //   const handleDecreaseQuantity = (productId) => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/item-decrease',
+//         'https://andrewecomerceback.onrender.com/api/v1/item-decrease',
 //         { productId },
 //         {
 //           headers: {
@@ -724,7 +724,7 @@
 //   const handleClearCart = () => {
 //     axios
 //       .post(
-//         'http://localhost:2030/api/v1/clearcart',
+//         'https://andrewecomerceback.onrender.com/api/v1/clearcart',
 //         {},
 //         {
 //           headers: {
@@ -747,7 +747,7 @@
 //     setLoading(true);
 //     try {
 //       const response = await axios.post(
-//         'http://localhost:2030/api/v1/checkout',
+//         'https://andrewecomerceback.onrender.com/api/v1/checkout',
 //         {},
 //         {
 //           headers: {
@@ -926,7 +926,7 @@ const Cart = () => {
   //   setLoading(true);
   //   try {
   //     const response = await axios.post(
-  //       'http://localhost:2030/api/v1/checkout', 
+  //       'https://andrewecomerceback.onrender.com/api/v1/checkout', 
   //       {},
   //       {
   //         headers: {
@@ -949,7 +949,7 @@ const Cart = () => {
           const handleRemoveItem = (productId) => {
             axios
               .post(
-                'http://localhost:2030/api/v1/removeitem',
+                'https://andrewecomerceback.onrender.com/api/v1/removeitem',
                 { productId },
                 {
                   headers: {
@@ -969,7 +969,7 @@ const Cart = () => {
            const handleClearCart = () => {
                 axios
                   .post(
-                    'http://localhost:2030/api/v1/clearcart',
+                    'https://andrewecomerceback.onrender.com/api/v1/clearcart',
                     {},
                     {
                       headers: {
@@ -1002,7 +1002,7 @@ const Cart = () => {
             } else {
               try {
                 const response = await axios.post(
-                  'http://localhost:2030/api/v1/checkout', 
+                  'https://andrewecomerceback.onrender.com/api/v1/checkout', 
                   {},
                   {
                     headers: {
@@ -1037,7 +1037,7 @@ const Cart = () => {
     setLoading(true);
 
     axios
-      .get("http://localhost:2030/api/v1/viewcart", {
+      .get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

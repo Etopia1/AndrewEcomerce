@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 
-const BASE_URL = "http://localhost:2030"; // Change if deployed
+const BASE_URL = "https://andrewecomerceback.onrender.com"; // Change if deployed
 
 const UsernewPassword = () => {
   const [password, setPassword] = useState("");

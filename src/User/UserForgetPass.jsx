@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 
-const BASE_URL = "http://localhost:2030";
+const BASE_URL = "https://andrewecomerceback.onrender.com";
 
 const UserForgetPass = () => {
   const [email, setEmail] = useState('');

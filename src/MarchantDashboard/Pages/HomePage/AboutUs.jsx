@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCheckCircle, FaTruck, FaHeadset, FaUndo } from "react-icons/fa";
+import ServiceFeatures from "./ServiceFeatures";
 
 const AboutUs = () => {
   return (
@@ -88,31 +89,8 @@ const AboutUs = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 flex flex-wrap justify-around gap-6">
-          <div className="flex flex-col items-center text-center">
-            <FaTruck className="text-4xl text-blue-600 mb-4" />
-            <h4 className="text-xl font-bold text-gray-800">
-              Free & Fast Delivery
-            </h4>
-            <p className="text-gray-600">On all orders above $50</p>
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <FaHeadset className="text-4xl text-blue-600 mb-4" />
-            <h4 className="text-xl font-bold text-gray-800">
-              24/7 Customer Service
-            </h4>
-            <p className="text-gray-600">We're here to help anytime</p>
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <FaUndo className="text-4xl text-blue-600 mb-4" />
-            <h4 className="text-xl font-bold text-gray-800">
-              Money Back Guarantee
-            </h4>
-            <p className="text-gray-600">100% satisfaction guarantee</p>
-          </div>
-        </div>
-      </section>
+      <ServiceFeatures/>
+     
 
       {/* Footer */}
    

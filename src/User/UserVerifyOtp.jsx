@@ -18,7 +18,7 @@ const UserVerifyOtp = () => {
   const [resend, setResend] = useState(false);
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState(false);
-  const url = 'https://new-ecomer-ce-app-backend2.vercel.app/api/v1';
+  const url = 'https://andrewecomerceback.onrender.com/api/v1';
   const navigate = useNavigate();
 
   useEffect(() => {

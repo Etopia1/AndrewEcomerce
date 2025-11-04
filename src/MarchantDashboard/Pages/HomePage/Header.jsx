@@ -488,7 +488,7 @@ const Header = () => {
     }
 
     axios
-      .get("https://new-ecomer-ce-app-backend2.vercel.app/api/v1/viewcart", {
+      .get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -515,7 +515,7 @@ const Header = () => {
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-md">
       {/* 🔸 Promo Bar */}
-      <div className="bg-black text-white text-sm flex justify-between items-center px-6 md:px-12 py-2">
+      {/* <div className="bg-black text-white text-sm flex justify-between items-center px-6 md:px-12 py-2">
         <p className="text-center text-gray-200">
           Summer Sale For All Swim Suits And Free Express Delivery -{" "}
           <span className="font-semibold text-white">OFF 50%</span>{" "}
@@ -525,7 +525,7 @@ const Header = () => {
           <span>English</span>
           <FaChevronDown className="text-xs mt-1" />
         </div>
-      </div>
+      </div> */}
 
       {/* 🔸 Main Header */}
       <div className="flex justify-between items-center px-6 md:px-12 py-4 border-b border-gray-200">

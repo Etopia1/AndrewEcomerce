@@ -19,7 +19,7 @@
 //     const Nav = useNavigate()
 
 //     const getoneProduct = () =>{
-//         axios.get(`http://localhost:2030/api/v1/getoneproduct/${id}`)
+//         axios.get(`https://andrewecomerceback.onrender.com/api/v1/getoneproduct/${id}`)
 //         .then((res)=>{
 //             setoneproducts(res.data.data)
 //             setcategoryid(res.data.data.category)
@@ -42,7 +42,7 @@
   
 //       axios
 //         .post(
-//           "http://localhost:2030/api/v1/addtocart",
+//           "https://andrewecomerceback.onrender.com/api/v1/addtocart",
 //           { productId, quantity },
 //           {
 //             headers: {
@@ -63,7 +63,7 @@
 
 //     const featchProudct = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:2030/api/v1/category/${categoryid}`, {
+//         const response = await axios.get(`https://andrewecomerceback.onrender.com/api/v1/category/${categoryid}`, {
 //         });
 //         console.log(response?.data?.data)
 //         // setrelateditem(response?.data?.data?.products)
@@ -423,12 +423,13 @@ const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [categoryid, setCategoryId] = useState("");
   const token = useSelector((state) => state.token);
+  console.log(token)
   const Nav = useNavigate();
   const rowRef = useRef(null);
 
   const getOneProduct = () => {
     axios
-      .get(`http://localhost:2030/api/v1/getoneproduct/${id}`)
+      .get(`https://andrewecomerceback.onrender.com/api/v1/getoneproduct/${id}`)
       .then((res) => {
         setOneProduct(res.data.data);
         setCategoryId(res.data.data.category);
@@ -444,7 +445,7 @@ const ProductPage = () => {
     if (!categoryid) return;
     try {
       const response = await axios.get(
-        `http://localhost:2030/api/v1/category/${categoryid}`
+        `https://andrewecomerceback.onrender.com/api/v1/category/${categoryid}`
       );
       const items = Array.isArray(response?.data?.data?.products)
         ? response?.data?.data?.products
@@ -468,7 +469,7 @@ const ProductPage = () => {
 
     axios
       .post(
-        "http://localhost:2030/api/v1/addtocart",
+        "https://andrewecomerceback.onrender.com/api/v1/addtocart",
         { productId: oneProduct._id, quantity },
         {
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
