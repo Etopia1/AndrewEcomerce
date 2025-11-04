@@ -607,19 +607,19 @@ const Header = () => {
                   <>
                     <p
                       onClick={() => Nav("/")}
-                      className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                      className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 text-[black] cursor-pointer"
                     >
                       <FiHome className="mr-2" /> Home
                     </p>
                     <p
                       onClick={() => Nav("/getAllorder")}
-                      className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                      className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 text-[black] cursor-pointer"
                     >
                       <FiUser className="mr-2" /> Orders
                     </p>
                     <p
                       onClick={() => Nav("/profile")}
-                      className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+                      className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 text-[black] cursor-pointer"
                     >
                       <FiSettings className="mr-2" /> Profile
                     </p>

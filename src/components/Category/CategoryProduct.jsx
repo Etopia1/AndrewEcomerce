@@ -1,123 +1,237 @@
+// // import React, { useState, useEffect } from "react";
+// // import axios from "axios";
+// // import { useNavigate, useParams } from "react-router-dom";
+// // import { BeatLoader } from "react-spinners";
+// // import { Toaster, toast } from "react-hot-toast";
+// // import { useSelector } from "react-redux";
+
+// // const CategoryProducts = () => {
+// //   const token = useSelector((state)=> state.token)
+
+// //   const { id } = useParams(); // Get category ID from URL
+// //   const [products, setProducts] = useState([]);
+// //   const [loading, setLoading] = useState(false);
+// //   const [error, setError] = useState("");
+// //   console.log(token)
+// //   console.log(id);
+// //   const Nav = useNavigate()
+
+// //   // Fetch products of the selected category
+// //   useEffect(() => {
+// //     setLoading(true);
+// //     axios
+// //       .get(`http://localhost:1900/api/v1/category/${id}`) // Use categoryId to fetch products
+// //       .then((response) => {
+// //         console.log(response.data.data.products);
+// //         setProducts(response.data.data.products); // Set products to state
+// //         setLoading(false);
+// //       })
+// //       .catch((error) => {
+// //         console.log(error);
+// //         setError("Failed to load products.");
+// //         setLoading(false);
+// //       });
+// //   }, [id]);
+
+  
+
+// //   // Function to add a product to the cart
+// //   const addToCart = (productId, quantity) => {
+// //     // const token = localStorage.getItem("authToken"); // Retrieve the authentication token
+
+// //     if (!token) {
+// //       toast.error("You need to log in to add items to the cart.");
+// //       return;
+// //     }
+
+// //     axios
+// //       .post(
+// //         "http://localhost:1900/api/v1/addtocart",
+// //         { productId, quantity },
+// //         {
+// //           headers: {
+// //             "Authorization": `Bearer ${token}`, // Send the token in the header
+// //             "Content-Type": "application/json",
+// //           },
+// //         }
+// //       )
+// //       .then((response) => {
+// //         toast.success("Item added to cart!");
+// //         console.log("Cart updated:", response.data);
+// //       })
+// //       .catch((error) => {
+// //         toast.error(error.response?.data?.message || "Failed to add item to cart.");
+// //         console.log("Error adding to cart:", error);
+// //       });
+// //   };
+// //     const featchProudct = async () => {
+// //     try {
+// //       const response = await axios.get(`http://localhost:1900/api/v1/getoneproduct/${id}`, {
+// //         // headers: { Authorization: `Bearer ${token}` },
+// //       });
+// //       console.log(response.data)
+// //       setProduct(response.data.data);
+// //       setProductname(response.data);
+// //       setproductPrice(response.data.data)
+// //       setProductDescription(response.data.data);
+// //       setImagePreview(response.data.data.categoryImage);
+// //     } catch (err) {
+// //       console.error(err);
+// //       // toast.error('Failed to fetch category details');
+// //     }
+// //   };
+
+
+// //   return (
+// //     <div className="w-full h-screen bg-[red]-100 p-6">
+// //       <h2 className="text-3xl font-bold mb-6">Products in this Category</h2>
+
+// //       {/* Loading or Error Messages */}
+// //       {loading ? (
+// //         <div className="w-full flex justify-center">
+// //           <BeatLoader color="#333" size={30} />
+// //         </div>
+// //       ) : error ? (
+// //         <div className="w-full text-center text-red-500">{error}</div>
+// //       ) : (
+// //         <div className="w-full flex-wrap max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+// //           {/* Product Cards */}
+// //           {products.map((product) => (
+// //             <div
+// //               key={product._id}
+// //               onClick={()=> Nav(`/productView/${product._id}`)}
+// //               className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-200 ease-in-out"
+// //             >
+// //               <div className="h-40 bg-gray-200">
+// //                 <img
+// //                   src={product.productImage}
+// //                   alt={product.productName}
+// //                   className="w-full h-full object-cover rounded-t-lg"
+// //                 />
+// //               </div>
+// //               <div className="p-4">
+// //                 <h3 className="text-lg font-semibold text-gray-800">{product.productName}</h3>
+// //                 <p className="text-gray-500">{product.productDescription}</p>
+// //                 <p className="text-xl font-bold text-gray-700">${product.productPrice}</p>
+                
+// //                 {/* Add to Cart Button */}
+// //                 <button
+// //                   className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+// //                   onClick={() => addToCart(product._id, 1)} // Add product with quantity 1
+// //                 >
+// //                   Add To Cart
+// //                 </button>
+// //               </div>
+// //             </div>
+// //           ))}
+// //         </div>
+// //       )}
+
+// //       <Toaster /> {/* Toast notifications */}
+// //     </div>
+// //   );
+// // };
+
+// // export default CategoryProducts;
+
 // import React, { useState, useEffect } from "react";
 // import axios from "axios";
+// import Footer from '../Footer/Footer'
 // import { useNavigate, useParams } from "react-router-dom";
 // import { BeatLoader } from "react-spinners";
 // import { Toaster, toast } from "react-hot-toast";
 // import { useSelector } from "react-redux";
 
 // const CategoryProducts = () => {
-//   const token = useSelector((state)=> state.token)
-
-//   const { id } = useParams(); // Get category ID from URL
+//   const token = useSelector((state) => state.token);
+//   const { id } = useParams();
 //   const [products, setProducts] = useState([]);
 //   const [loading, setLoading] = useState(false);
 //   const [error, setError] = useState("");
-//   console.log(token)
-//   console.log(id);
-//   const Nav = useNavigate()
+//   const Nav = useNavigate();
 
-//   // Fetch products of the selected category
 //   useEffect(() => {
 //     setLoading(true);
 //     axios
-//       .get(`http://localhost:1900/api/v1/category/${id}`) // Use categoryId to fetch products
+//       .get(`https://andrewecomerceback.onrender.com/api/v1/category/${id}`)
 //       .then((response) => {
-//         console.log(response.data.data.products);
-//         setProducts(response.data.data.products); // Set products to state
+//         setProducts(response.data.data.products);
 //         setLoading(false);
 //       })
 //       .catch((error) => {
-//         console.log(error);
 //         setError("Failed to load products.");
 //         setLoading(false);
 //       });
 //   }, [id]);
 
-  
-
-//   // Function to add a product to the cart
 //   const addToCart = (productId, quantity) => {
-//     // const token = localStorage.getItem("authToken"); // Retrieve the authentication token
-
 //     if (!token) {
 //       toast.error("You need to log in to add items to the cart.");
-//       return;
+//       Nav("/Userlogin")
 //     }
 
 //     axios
 //       .post(
-//         "http://localhost:1900/api/v1/addtocart",
+//         "https://andrewecomerceback.onrender.com/api/v1/addtocart",
 //         { productId, quantity },
 //         {
 //           headers: {
-//             "Authorization": `Bearer ${token}`, // Send the token in the header
+//             Authorization: `Bearer ${token}`,
 //             "Content-Type": "application/json",
 //           },
 //         }
 //       )
-//       .then((response) => {
+//       .then(() => {
 //         toast.success("Item added to cart!");
-//         console.log("Cart updated:", response.data);
 //       })
 //       .catch((error) => {
 //         toast.error(error.response?.data?.message || "Failed to add item to cart.");
-//         console.log("Error adding to cart:", error);
 //       });
 //   };
-//     const featchProudct = async () => {
-//     try {
-//       const response = await axios.get(`http://localhost:1900/api/v1/getoneproduct/${id}`, {
-//         // headers: { Authorization: `Bearer ${token}` },
-//       });
-//       console.log(response.data)
-//       setProduct(response.data.data);
-//       setProductname(response.data);
-//       setproductPrice(response.data.data)
-//       setProductDescription(response.data.data);
-//       setImagePreview(response.data.data.categoryImage);
-//     } catch (err) {
-//       console.error(err);
-//       // toast.error('Failed to fetch category details');
-//     }
-//   };
-
 
 //   return (
-//     <div className="w-full h-screen bg-[red]-100 p-6">
-//       <h2 className="text-3xl font-bold mb-6">Products in this Category</h2>
+//     <div className="min-h-screen w-full bg-gray-100 p-4 md:p-8">
+//       <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
+//         Products in this Category
+//       </h2>
 
-//       {/* Loading or Error Messages */}
 //       {loading ? (
-//         <div className="w-full flex justify-center">
+//         <div className="flex justify-center items-center h-40">
 //           <BeatLoader color="#333" size={30} />
 //         </div>
 //       ) : error ? (
-//         <div className="w-full text-center text-red-500">{error}</div>
+//         <div className="text-center text-red-500">{error}</div>
 //       ) : (
-//         <div className="w-full flex-wrap max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-//           {/* Product Cards */}
+//         <div className="flex flex-wrap gap-6 justify-center">
 //           {products.map((product) => (
 //             <div
 //               key={product._id}
-//               onClick={()=> Nav(`/productView/${product._id}`)}
-//               className="w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-200 ease-in-out"
+//               onClick={() => Nav(`/productView/${product._id}`)}
+//               className="flex flex-col w-full md:w-[30%] lg:w-[23%] bg-white rounded-lg shadow hover:shadow-lg transition duration-200"
 //             >
-//               <div className="h-40 bg-gray-200">
+//               <div className="w-full h-40 bg-gray-200 rounded-t-lg overflow-hidden">
 //                 <img
 //                   src={product.productImage}
 //                   alt={product.productName}
-//                   className="w-full h-full object-cover rounded-t-lg"
+//                   className="w-full h-full object-cover"
 //                 />
 //               </div>
-//               <div className="p-4">
-//                 <h3 className="text-lg font-semibold text-gray-800">{product.productName}</h3>
-//                 <p className="text-gray-500">{product.productDescription}</p>
-//                 <p className="text-xl font-bold text-gray-700">${product.productPrice}</p>
-                
-//                 {/* Add to Cart Button */}
+//               <div className="p-4 flex flex-col justify-between flex-grow">
+//                 <h3 className="text-lg font-semibold text-gray-800 mb-2">
+//                   {product.productName}
+//                 </h3>
+//                 <p className="text-sm text-gray-500 mb-2">
+//                   {product.productDescription}
+//                 </p>
+//                 <p className="text-lg font-bold text-gray-700 mb-4">
+//                   ${product.productPrice}
+//                 </p>
 //                 <button
-//                   className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-//                   onClick={() => addToCart(product._id, 1)} // Add product with quantity 1
+//                   className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+//                   onClick={(e) => {
+//                     e.stopPropagation();
+//                     addToCart(product._id, 1);
+//                   }}
 //                 >
 //                   Add To Cart
 //                 </button>
@@ -127,8 +241,9 @@
 //         </div>
 //       )}
 
-//       <Toaster /> {/* Toast notifications */}
+//       <Toaster />
 //     </div>
+
 //   );
 // };
 
@@ -136,19 +251,23 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Footer from '../Footer/Footer'
+import Footer from "../Footer/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { Toaster, toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { FaShoppingCart, FaHeart, FaRegHeart, FaEye } from "react-icons/fa";
+
+const PINK = "#ff4d73";
 
 const CategoryProducts = () => {
   const token = useSelector((state) => state.token);
   const { id } = useParams();
   const [products, setProducts] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const Nav = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -158,16 +277,25 @@ const CategoryProducts = () => {
         setProducts(response.data.data.products);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setError("Failed to load products.");
         setLoading(false);
       });
   }, [id]);
 
-  const addToCart = (productId, quantity) => {
+  const toggleWishlist = (productId) => {
+    setWishlistItems((prev) =>
+      prev.includes(productId)
+        ? (toast.info("Removed from wishlist 💔"), prev.filter((id) => id !== productId))
+        : (toast.success("Added to wishlist ❤️"), [...prev, productId])
+    );
+  };
+
+  const addToCart = (productId, quantity = 1) => {
     if (!token) {
       toast.error("You need to log in to add items to the cart.");
-      Nav("/Userlogin")
+      navigate("/Userlogin");
+      return;
     }
 
     axios
@@ -181,69 +309,165 @@ const CategoryProducts = () => {
           },
         }
       )
-      .then(() => {
-        toast.success("Item added to cart!");
-      })
-      .catch((error) => {
-        toast.error(error.response?.data?.message || "Failed to add item to cart.");
-      });
+      .then(() => toast.success("Item added to cart 🛒"))
+      .catch((error) => toast.error(error.response?.data?.message || "Failed to add to cart"));
   };
 
-  return (
-    <div className="min-h-screen w-full bg-gray-100 p-4 md:p-8">
-      <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
-        Products in this Category
-      </h2>
+  const handleViewDetails = (product) => navigate(`/productView/${product._id}`);
 
-      {loading ? (
-        <div className="flex justify-center items-center h-40">
-          <BeatLoader color="#333" size={30} />
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <BeatLoader color={PINK} size={25} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 font-semibold mt-10">{error}</div>;
+  }
+
+  return (
+    <div className="w-full bg-white py-10 px-6 md:px-10">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-8">
+        <div className="w-3 h-8 rounded-md" style={{ backgroundColor: PINK }}></div>
+        <div>
+          <p className="text-lg font-semibold" style={{ color: PINK }}>
+            Category
+          </p>
+          <h2 className="text-3xl font-bold text-gray-900 mt-1">Our Products</h2>
         </div>
-      ) : error ? (
-        <div className="text-center text-red-500">{error}</div>
-      ) : (
-        <div className="flex flex-wrap gap-6 justify-center">
-          {products.map((product) => (
-            <div
+      </div>
+
+      {/* ✅ Mobile Scroll View */}
+      <div className="flex gap-5 overflow-x-auto scrollbar-hide sm:hidden pb-4">
+        {products.map((product) => {
+          const isWishlisted = wishlistItems.includes(product._id);
+          return (
+            <ProductCard
               key={product._id}
-              onClick={() => Nav(`/productView/${product._id}`)}
-              className="flex flex-col w-full md:w-[30%] lg:w-[23%] bg-white rounded-lg shadow hover:shadow-lg transition duration-200"
-            >
-              <div className="w-full h-40 bg-gray-200 rounded-t-lg overflow-hidden">
-                <img
-                  src={product.productImage}
-                  alt={product.productName}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4 flex flex-col justify-between flex-grow">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                  {product.productName}
-                </h3>
-                <p className="text-sm text-gray-500 mb-2">
-                  {product.productDescription}
-                </p>
-                <p className="text-lg font-bold text-gray-700 mb-4">
-                  ${product.productPrice}
-                </p>
-                <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    addToCart(product._id, 1);
-                  }}
-                >
-                  Add To Cart
-                </button>
-              </div>
-            </div>
-          ))}
+              product={product}
+              isWishlisted={isWishlisted}
+              toggleWishlist={toggleWishlist}
+              addToCart={addToCart}
+              handleViewDetails={handleViewDetails}
+            />
+          );
+        })}
+      </div>
+
+      {/* ✅ Tablet Two-Row Scroll */}
+      <div className="hidden sm:block lg:hidden space-y-8">
+        <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+          {products.slice(0, Math.ceil(products.length / 2)).map((product) => {
+            const isWishlisted = wishlistItems.includes(product._id);
+            return (
+              <ProductCard
+                key={product._id}
+                product={product}
+                isWishlisted={isWishlisted}
+                toggleWishlist={toggleWishlist}
+                addToCart={addToCart}
+                handleViewDetails={handleViewDetails}
+              />
+            );
+          })}
         </div>
-      )}
+        <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4">
+          {products.slice(Math.ceil(products.length / 2)).map((product) => {
+            const isWishlisted = wishlistItems.includes(product._id);
+            return (
+              <ProductCard
+                key={product._id}
+                product={product}
+                isWishlisted={isWishlisted}
+                toggleWishlist={toggleWishlist}
+                addToCart={addToCart}
+                handleViewDetails={handleViewDetails}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ✅ Desktop Grid */}
+      <div className="hidden lg:grid grid-cols-4 gap-6">
+        {products.map((product) => {
+          const isWishlisted = wishlistItems.includes(product._id);
+          return (
+            <ProductCard
+              key={product._id}
+              product={product}
+              isWishlisted={isWishlisted}
+              toggleWishlist={toggleWishlist}
+              addToCart={addToCart}
+              handleViewDetails={handleViewDetails}
+            />
+          );
+        })}
+      </div>
 
       <Toaster />
+      <div className="mt-10">
+        {/* <Footer /> */}
+      </div>
     </div>
+  );
+};
 
+/* ✅ Product Card Component */
+const ProductCard = ({ product, isWishlisted, toggleWishlist, addToCart, handleViewDetails }) => {
+  return (
+    <div className="min-w-[230px] bg-white border rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-4 relative flex flex-col">
+      {/* Wishlist + Eye icons */}
+      <div className="absolute top-3 right-3 flex gap-2">
+        <button
+          onClick={() => toggleWishlist(product._id)}
+          className="bg-white rounded-full p-2 shadow hover:bg-pink-100 transition"
+        >
+          {isWishlisted ? (
+            <FaHeart style={{ color: PINK }} />
+          ) : (
+            <FaRegHeart className="text-gray-500" />
+          )}
+        </button>
+        <button
+          onClick={() => handleViewDetails(product)}
+          className="bg-white rounded-full p-2 shadow hover:bg-gray-100 transition"
+        >
+          <FaEye className="text-gray-600 hover:text-black" />
+        </button>
+      </div>
+
+      {/* Product Image */}
+      <img
+        src={product.productImage}
+        alt={product.productName}
+        className="w-full h-40 object-contain mb-3"
+      />
+
+      {/* Info */}
+      <h3 className="text-base font-semibold text-gray-800 truncate">
+        {product.productName}
+      </h3>
+      <p className="text-gray-500 text-sm truncate mb-3">
+        {product.productDescription?.slice(0, 45)}...
+      </p>
+
+      {/* Price & Button */}
+      <div className="flex justify-between items-center mt-auto">
+        <p className="text-lg font-bold text-green-600">
+          ₦{product.productPrice?.toLocaleString()}
+        </p>
+        <button
+          onClick={() => addToCart(product._id)}
+          className="flex items-center gap-1 bg-black text-white py-2 px-3 rounded-lg hover:bg-gray-800 transition"
+        >
+          <FaShoppingCart /> Add
+        </button>
+      </div>
+    </div>
   );
 };
 

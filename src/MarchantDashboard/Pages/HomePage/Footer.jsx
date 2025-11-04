@@ -79,10 +79,10 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <h4 className="text-white font-semibold mb-3">Download App</h4>
-          <p className="text-sm text-gray-400 mb-3">Save $3 with App New User Only</p>
+           <h4 className="text-white font-semibold mb-3">Follow Us More On</h4>
+          <p className="text-sm text-gray-400 mb-3"></p>
           <div className="flex items-center gap-3 mb-4">
-            <img
+            {/* <img
               src="https://cdn-icons-png.flaticon.com/512/888/888857.png"
               alt="QR code"
               className="w-16 h-16 bg-white rounded-md"
@@ -98,7 +98,7 @@ const Footer = () => {
                 alt="App Store"
                 className="w-28"
               />
-            </div>
+            </div> */}
           </div>
           <div className="flex gap-3 text-lg text-white">
             <FaFacebookF className="hover:text-pink-500 cursor-pointer" />

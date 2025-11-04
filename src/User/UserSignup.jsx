@@ -417,7 +417,7 @@ const UserSignup = () => {
   {/* Left Image Section */}
   <div className="hidden md:flex w-1/2 h-full items-center justify-center bg-gray-50">
     <img
-      src="src/assets/shopping1.jpg"
+      src="https://i.pinimg.com/736x/2e/00/7c/2e007c098124a64c2fbf93ea81565b7f.jpg"
       alt="Signup Visual"
       className="w-full h-full object-cover object-center rounded-none shadow-xl"
     />

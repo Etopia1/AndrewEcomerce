@@ -125,6 +125,138 @@
 // };
 
 // export default HeroPage2;
+// import React, { useEffect, useState } from "react";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// const carouselData = [
+//   {
+//     imgSrc:
+//       "https://i.pinimg.com/1200x/15/f9/09/15f909419418cc035cebf4f68cf0c04b.jpg",
+//     title: "PRADA",
+//     discount: "At an Affordable Price",
+//     link: "/shop-now",
+//   },
+//   {
+//     imgSrc:
+//       "https://img.freepik.com/free-photo/full-length-shot-happy-girl-shopping_23-2148671221.jpg",
+//     title: "Women's Fashion",
+//     discount: "Trendy Outfits Up to 30% Off",
+//     link: "/shop-now",
+//   },
+//   {
+//     imgSrc:
+//       "https://img.freepik.com/free-photo/modern-electronic-gadgets-digital-device_53876-129782.jpg",
+//     title: "Electronics Deals",
+//     discount: "Save Big on Latest Gadgets",
+//     link: "/shop-now",
+//   },
+// ];
+
+// const HeroPage2 = () => {
+//   const [categories, setCategories] = useState([]);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     axios
+//       .get("http://localhost:2030/api/v1/category")
+//       .then((res) => setCategories(res.data.data))
+//       .catch((err) => console.log(err));
+//   }, []);
+
+//   const settings = {
+//     dots: true,
+//     arrows: false,
+//     infinite: true,
+//     speed: 800,
+//     slidesToScroll: 1,
+//     autoplay: true,
+//     autoplaySpeed: 4000,
+//     cssEase: "ease-in-out",
+//     pauseOnHover: false,
+//     pauseOnFocus: false,
+//   };
+
+//   return (
+//     <div className="flex flex-col md:flex-row w-full bg-white py-4 md:px-4 gap-4">
+//       {/* ✅ Sidebar for Desktop / Tablet */}
+//       <div className="hidden md:block md:w-[22%] bg-white border border-gray-200 rounded-xl shadow-sm">
+//         <ul className="divide-y divide-gray-100">
+//           {categories.map((cat) => (
+//             <li
+//               key={cat._id}
+//               onClick={() => navigate(`/viewcategoryandProduct/${cat._id}`)}
+//               className="flex justify-between items-center px-5 py-3 hover:bg-gray-100 cursor-pointer transition-all duration-200 text-gray-800 font-medium"
+//             >
+//               <span>{cat.categoryName}</span>
+//               <span className="text-gray-500 text-sm">›</span>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+
+//       {/* ✅ Dropdown Menu for Mobile */}
+//       <div className="md:hidden w-full px-3">
+//         <select
+//           onChange={(e) =>
+//             navigate(`/viewcategoryandProduct/${e.target.value}`)
+//           }
+//           className="w-full border border-gray-300 rounded-lg p-3 text-gray-700 font-medium shadow-sm focus:ring-2 focus:ring-black"
+//         >
+//           <option value="">Browse Categories</option>
+//           {categories.map((cat) => (
+//             <option key={cat._id} value={cat._id}>
+//               {cat.categoryName}
+//             </option>
+//           ))}
+//         </select>
+//       </div>
+
+//       {/* ✅ Hero Carousel */}
+//       <div className="w-full md:w-[78%] relative rounded-xl overflow-hidden">
+//         <Slider {...settings}>
+//           {carouselData.map((item, index) => (
+//             <div key={index} className="relative rounded-xl">
+//               <img
+//                 src={item.imgSrc}
+//                 alt={item.title}
+//                 className="w-full h-[200px] sm:h-[250px] md:h-[350px] lg:h-[420px] object-cover rounded-xl"
+//               />
+
+//               {/* ✅ Overlay Section */}
+//               <div className="absolute inset-0 bg-black bg-opacity-40 rounded-xl flex flex-col justify-center pl-6 sm:pl-10 md:pl-14 text-white">
+//                 <div className="flex items-center gap-2 mb-2">
+//                   <img
+//                     src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+//                     alt="Apple"
+//                     className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert"
+//                   />
+//                   <h3 className="text-lg md:text-xl font-semibold">
+//                     {item.title}
+//                   </h3>
+//                 </div>
+//                 <h1 className="text-xl sm:text-2xl md:text-4xl font-extrabold leading-tight">
+//                   {item.discount}
+//                 </h1>
+//                 <button
+//                   onClick={() => navigate(item.link)}
+//                   className="mt-4 flex items-center gap-2 bg-white text-black font-semibold px-4 py-2 rounded-full hover:bg-gray-200 transition-all w-fit text-sm sm:text-base"
+//                 >
+//                   Shop Now →
+//                 </button>
+//               </div>
+//             </div>
+//           ))}
+//         </Slider>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HeroPage2;
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -137,7 +269,7 @@ const carouselData = [
     imgSrc:
       "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-model-unselect-gallery-1-202209_GEO_US?wid=5120&hei=2880&fmt=jpeg&qlt=80&.v=1660753619946",
     title: "iPhone 14 Series",
-    discount: "Up to 10% off Voucher",
+    discount: "Up to 10% Off Voucher",
     link: "/shop-now",
   },
   {
@@ -162,9 +294,9 @@ const HeroPage2 = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:2030/api/v1/category")
+      .get("https://andrewecomerceback.onrender.com/api/v1/category")
       .then((res) => setCategories(res.data.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Category fetch error:", err));
   }, []);
 
   const settings = {
@@ -181,9 +313,11 @@ const HeroPage2 = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row w-full bg-white py-4 md:px-4 gap-4">
-      {/* ✅ Sidebar for Desktop / Tablet */}
-      <div className="hidden md:block md:w-[22%] bg-white border border-gray-200 rounded-xl shadow-sm">
+    <div className="flex flex-col md:flex-row w-full bg-white py-4 md:px-6 gap-4">
+      {/* ✅ Desktop Sidebar */}
+      <div className="hidden md:block md:w-[25%] bg-white border border-gray-200 rounded-xl shadow-sm">
+        <h2 className="text-lg font-semibold text-gray-800 mb-2 px-4 pt-4">
+        </h2>
         <ul className="divide-y divide-gray-100">
           {categories.map((cat) => (
             <li
@@ -195,55 +329,53 @@ const HeroPage2 = () => {
               <span className="text-gray-500 text-sm">›</span>
             </li>
           ))}
+          {categories.length === 0 && (
+            <p className="text-gray-500 text-sm px-4 py-3">Loading...</p>
+          )}
         </ul>
       </div>
 
-      {/* ✅ Dropdown Menu for Mobile */}
-      <div className="md:hidden w-full px-3">
-        <select
-          onChange={(e) =>
-            navigate(`/viewcategoryandProduct/${e.target.value}`)
-          }
-          className="w-full border border-gray-300 rounded-lg p-3 text-gray-700 font-medium shadow-sm focus:ring-2 focus:ring-black"
-        >
-          <option value="">Browse Categories</option>
+      {/* ✅ Mobile Category Row */}
+      <div className="md:hidden w-full px-3 mb-2">
+        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-2">
           {categories.map((cat) => (
-            <option key={cat._id} value={cat._id}>
+            <div
+              key={cat._id}
+              onClick={() => navigate(`/viewcategoryandProduct/${cat._id}`)}
+              className="flex-shrink-0 bg-gray-50 border border-gray-300 rounded-lg 
+                         px-4 py-2 text-gray-800 font-medium text-sm capitalize 
+                         cursor-pointer hover:bg-gray-100 transition-all"
+            >
               {cat.categoryName}
-            </option>
+            </div>
           ))}
-        </select>
+          {categories.length === 0 && (
+            <p className="text-gray-500 text-sm px-2">Loading...</p>
+          )}
+        </div>
       </div>
 
       {/* ✅ Hero Carousel */}
-      <div className="w-full md:w-[78%] relative rounded-xl overflow-hidden">
+      <div className="w-[100%] p-[10px] md:w-[75%] relative  overflow-hidden">
         <Slider {...settings}>
           {carouselData.map((item, index) => (
             <div key={index} className="relative rounded-xl">
               <img
                 src={item.imgSrc}
                 alt={item.title}
-                className="w-full h-[200px] sm:h-[250px] md:h-[350px] lg:h-[420px] object-cover rounded-xl"
+                className="w-full h-[220px] sm:h-[280px] md:h-[350px] lg:h-[420px] object-cover rounded-xl"
               />
-
-              {/* ✅ Overlay Section */}
+              {/* ✅ Overlay */}
               <div className="absolute inset-0 bg-black bg-opacity-40 rounded-xl flex flex-col justify-center pl-6 sm:pl-10 md:pl-14 text-white">
-                <div className="flex items-center gap-2 mb-2">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                    alt="Apple"
-                    className="w-6 h-6 md:w-8 md:h-8 brightness-0 invert"
-                  />
-                  <h3 className="text-lg md:text-xl font-semibold">
-                    {item.title}
-                  </h3>
-                </div>
+                <h3 className="text-lg md:text-xl font-semibold mb-1">
+                  {item.title}
+                </h3>
                 <h1 className="text-xl sm:text-2xl md:text-4xl font-extrabold leading-tight">
                   {item.discount}
                 </h1>
                 <button
                   onClick={() => navigate(item.link)}
-                  className="mt-4 flex items-center gap-2 bg-white text-black font-semibold px-4 py-2 rounded-full hover:bg-gray-200 transition-all w-fit text-sm sm:text-base"
+                  className="mt-4 flex items-center gap-2 bg-white text-black font-semibold px-4 py-2 rounded-full hover:bg-gray-200 transition-all text-sm sm:text-base"
                 >
                   Shop Now →
                 </button>
@@ -252,6 +384,12 @@ const HeroPage2 = () => {
           ))}
         </Slider>
       </div>
+
+      {/* ✅ Hide scrollbar for mobile row */}
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </div>
   );
 };

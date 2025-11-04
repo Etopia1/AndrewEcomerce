@@ -904,334 +904,306 @@
 //    )
 // }
 // export default Cart
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Header from "../../MarchantDashboard/Header/Header";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
-import Swal from 'sweetalert2';
-import { ToastContainer } from "react-toastify";
-
 
 const Cart = () => {
-      const [cartItems, setCartItems] = useState([]);
-      const [loading, setLoading] = useState(false);
-        const [totalPrice, setTotalPrice] = useState(0);
-          const token = useSelector((state) => state.token);
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const token = useSelector((state) => state.token);
+  const Nav = useNavigate();
 
-            // const handleCheckout = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.post(
-  //       'https://andrewecomerceback.onrender.com/api/v1/checkout', 
-  //       {},
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`, // Pass the token to authenticate the user
-  //         },
-  //       }
-  //     );
-  //  console.log(response)
-  //  Nav(`/confirmoreder`)
-      
-  //   } catch (error) {
-  //     console.error('Checkout Error:', error);
-  //     toast.error('An error occurred during checkout');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-        
-
-          const handleRemoveItem = (productId) => {
-            axios
-              .post(
-                'https://andrewecomerceback.onrender.com/api/v1/removeitem',
-                { productId },
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`,
-                  },
-                }
-              )
-              .then(() => {
-                setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
-                toast.success('Item removed from cart.');
-              })
-              .catch((error) => {
-                console.error(error);
-                toast.error('Failed to remove item.');
-              });
-          };
-           const handleClearCart = () => {
-                axios
-                  .post(
-                    'https://andrewecomerceback.onrender.com/api/v1/clearcart',
-                    {},
-                    {
-                      headers: {
-                        Authorization: `Bearer ${token}`,
-                      },
-                    }
-                  )
-                  .then(() => {
-                    setCartItems([]);
-                    setTotalPrice(0);
-                    toast.success('Cart cleared.');
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                    toast.error('Failed to clear cart.');
-                  });
-              };
-            
-
-
-          const handleCheckout = async () => {
-            setLoading(true);
-            if(cartItems.length === 0){
-              Swal.fire({
-                icon: 'error',
-                title: 'Please Add Some Item To Cart',
-                text: 'Your Cart Is Empty.',
-              }); 
-              Nav('/')
-            } else {
-              try {
-                const response = await axios.post(
-                  'https://andrewecomerceback.onrender.com/api/v1/checkout', 
-                  {},
-                  {
-                    headers: {
-                      Authorization: `Bearer ${token}`, // Pass the token to authenticate the user
-                    },
-                  }
-                );
-             console.log(response)
-             Swal.fire({
-              icon: 'success',
-              title: 'Checked ',
-              text: response.data.message,
-            });
-             setLoading(false)
-             setTimeout(()=>(
-              Nav(`/confirmoreder`)
-
-             ), 2000)
-                
-              } catch (error) {
-                console.error('Checkout Error:', error);
-                toast.error('An error occurred during checkout');
-              } finally {
-                setLoading(false);
-              }
-            }
-           
-          };
-         
-  // Sample data for cart items
-  useEffect(() => {
+  const fetchCart = async () => {
     setLoading(true);
-
-    axios
-      .get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setCartItems(response.data.data.data.items);
-        setTotalPrice(response.data.data.data.totalPrice);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        setError("Failed to fetch cart items.");
-        setLoading(false);
+    try {
+      const res = await axios.get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
+        headers: { Authorization: `Bearer ${token}` },
       });
+      const data = res.data?.data?.data;
+      setCartItems(data?.items || []);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCart();
   }, [token]);
 
-  // Handle quantity increase
+  const handleRemoveItem = async (productId) => {
+    try {
+      await axios.post(
+        "https://andrewecomerceback.onrender.com/api/v1/removeitem",
+        { productId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setCartItems((prev) => prev.filter((item) => item.productId !== productId));
+      Swal.fire("Removed", "Item removed from cart.", "success");
+    } catch {
+      Swal.fire("Error", "Failed to remove item.", "error");
+    }
+  };
 
-  // Handle quantity decrease
- 
+  const handleClearCart = async () => {
+    try {
+      await axios.post(
+        "https://andrewecomerceback.onrender.com/api/v1/clearcart",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setCartItems([]);
+      Swal.fire("Cleared", "Cart cleared successfully.", "success");
+    } catch {
+      Swal.fire("Error", "Failed to clear cart.", "error");
+    }
+  };
 
-  // Handle remove item
- 
+  const handleCheckout = async () => {
+    if (cartItems.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Cart Empty",
+        text: "Please add items before checkout.",
+      });
+      return Nav("/");
+    }
 
-  const Nav = useNavigate()
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "https://andrewecomerceback.onrender.com/api/v1/checkout",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      Swal.fire("Success", response.data.message, "success");
+      setTimeout(() => Nav("/confirmoreder"), 1500);
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "Checkout failed.", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const handleIncreaseQuantity = async (productId) => {
+    try {
+      await axios.post(
+        "https://andrewecomerceback.onrender.com/api/v1/item-increase",
+        { productId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchCart();
+    } catch {
+      Swal.fire("Error", "Failed to increase quantity.", "error");
+    }
+  };
+
+  const handleDecreaseQuantity = async (productId) => {
+    try {
+      await axios.post(
+        "https://andrewecomerceback.onrender.com/api/v1/item-decrease",
+        { productId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      fetchCart();
+    } catch {
+      Swal.fire("Error", "Failed to decrease quantity.", "error");
+    }
+  };
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
-    <div className="bg-gray-50 relative md:mb-[2%] mb-[50%] h-[100vh] flex flex-col">
-      {/* Top Bar */}
-      {/* <header className="bg-black text-white text-sm text-center py-2">
-        Summer Sale for All Swim Suits and Accessories - Get 50% Off |{" "}
-        <a href="#" className="text-red-500 underline">
-          Shop Now
-        </a>
-      </header> */}
-
-      {/* Navbar */}
-      {/* <nav className="bg-white shadow-md">
-        <div className="container mx-auto px-4 flex justify-between items-center py-4">
-          <h1 className="text-xl font-bold">Exclusive</h1>
-          <div className="flex items-center gap-4">
-            <a href="#" className="text-gray-600">
-              Home
-            </a>
-            <a href="#" className="text-gray-600">
-              Contact
-            </a>
-            <a href="#" className="text-gray-600">
-              About
-            </a>
-            <a href="#" className="text-gray-600">
-              Sign Up
-            </a>
-          </div>
-        </div>
-      </nav> */}
-        {/* <ToastContainer
-        style={{ zIndex: 99999999999999999999999999999999999999999 }} // Ensure this is higher than the header
-      /> */}
-
-      {/* Breadcrumb */}
-      <div className="bg-gray-100 py-3">
-        <div className="container mx-auto px-4">
-          <p className="text-sm text-gray-500">
-            Home / My Account / <span className="text-black font-bold">Cart</span>
-          </p>
-        </div>
+    <div className="bg-gray-50 min-h-screen flex flex-col">
+      <div className="bg-gray-100 py-3 px-4 text-sm sm:text-base">
+        <p className="text-gray-600">
+          Home / My Account /{" "}
+          <span className="text-black font-semibold">Cart</span>
+        </p>
       </div>
-  
 
-      {/* Cart Section */}
-      <div className="container mx-auto px-4 py-10">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Cart Items */}
-          <div className="flex-1 bg-white p-6 rounded-md shadow-md overflow-auto max-h-[60vh]">
-            {cartItems.length > 0 ? (
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr>
-                    <th className="py-2 border-b">Product</th>
-                    <th className="py-2 border-b">Price</th>
-                    <th className="py-2 border-b">Quantity</th>
-                    <th className="py-2 border-b">Subtotal</th>
-                    <th className="py-2 border-b">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cartItems.map((item) => (
-                    <tr key={item.productId} className="border-b">
-                      <td className="py-3 flex items-center gap-4">
-                        <img
-                          src={item.productImage}
-                          alt={item.productName}
-                          className="w-12 h-12 object-cover rounded"
-                        />
-                        <span className="text-[10px]" >{item.productName}</span>
-                      </td>
-                      <td className="py-3">${item.price}</td>
-                      <td className="py-3">
+      <div className="container mx-auto px-3 sm:px-6 py-8 flex flex-col lg:flex-row gap-6">
+        <div className="flex-1 bg-white p-3 sm:p-6 rounded-lg shadow-md">
+          {loading ? (
+            <p className="text-center text-gray-500 text-base sm:text-lg">
+              Loading cart...
+            </p>
+          ) : cartItems.length > 0 ? (
+            <>
+              {/* ✅ Desktop Table View */}
+              <div className="hidden sm:block overflow-x-auto">
+                <table className="w-full border-collapse text-sm md:text-base">
+                  <thead>
+                    <tr className="border-b bg-gray-100 text-gray-700">
+                      <th className="py-3 px-2 text-left">Product</th>
+                      <th className="py-3 px-2 text-left">Price</th>
+                      <th className="py-3 px-2 text-left">Quantity</th>
+                      <th className="py-3 px-2 text-left">Subtotal</th>
+                      <th className="py-3 px-2 text-left">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cartItems.map((item) => (
+                      <tr
+                        key={item.productId}
+                        className="border-b hover:bg-gray-50 transition"
+                      >
+                        <td className="py-3 px-2 flex items-center gap-3">
+                          <img
+                            src={item.productImage}
+                            alt={item.productName}
+                            className="w-14 h-14 object-cover rounded-md"
+                          />
+                          <span className="text-gray-800 font-medium">
+                            {item.productName}
+                          </span>
+                        </td>
+                        <td className="py-3 px-2">${item.price}</td>
+                        <td className="py-3 px-2">
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() =>
+                                handleDecreaseQuantity(item.productId)
+                              }
+                              className="px-2 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                            >
+                              −
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button
+                              onClick={() =>
+                                handleIncreaseQuantity(item.productId)
+                              }
+                              className="px-2 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td className="py-3 px-2">
+                          ${item.price * item.quantity}
+                        </td>
+                        <td className="py-3 px-2">
+                          <button
+                            onClick={() => handleRemoveItem(item.productId)}
+                            className="text-red-500 hover:underline"
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* ✅ Mobile Card View */}
+              <div className="sm:hidden flex flex-col gap-4">
+                {cartItems.map((item) => (
+                  <div
+                    key={item.productId}
+                    className="border rounded-lg p-4 bg-gray-50 shadow-sm"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={item.productImage}
+                        alt={item.productName}
+                        className="w-20 h-20 object-cover rounded-md flex-shrink-0"
+                      />
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-gray-800 text-base mb-1">
+                          {item.productName}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-2">
+                          ${item.price}
+                        </p>
                         <div className="flex items-center gap-2">
                           <button
-                            // onClick={() => decreaseQuantity(item.)}
-                            className="px-2 py-1 bg-gray-300 text-gray-700 rounded"
+                            onClick={() =>
+                              handleDecreaseQuantity(item.productId)
+                            }
+                            className="px-2 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
                           >
-                            -
+                            −
                           </button>
-                          <span>{item.quantity}</span>
+                          <span className="font-medium text-gray-800">
+                            {item.quantity}
+                          </span>
                           <button
-                            // onClick={() => increaseQuantity(item.id)}
-                            className="px-2 py-1 bg-gray-300 text-gray-700 rounded"
+                            onClick={() =>
+                              handleIncreaseQuantity(item.productId)
+                            }
+                            className="px-2 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
                           >
                             +
                           </button>
                         </div>
-                      </td>
-                      <td className="py-3">${item.price * item.quantity}</td>
-                      <td className="py-3">
-                        <button
-                          onClick={() => handleRemoveItem(item.productId)}
-                          className="text-red-500 hover:underline"
-                        >
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p className="text-center text-gray-500">Your cart is empty!</p>
-            )}
-          </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-3">
+                      <span className="text-gray-700 font-semibold">
+                        Subtotal: ${item.price * item.quantity}
+                      </span>
+                      <button
+                        onClick={() => handleRemoveItem(item.productId)}
+                        className="text-red-500 text-sm hover:underline"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <p className="text-center text-gray-500 text-base sm:text-lg">
+              Your cart is empty.
+            </p>
+          )}
+        </div>
 
-          {/* Cart Summary */}
-          <div className="w-full lg:w-1/3 bg-white p-6 rounded-md shadow-md">
-            <h2 className="text-xl font-bold mb-4">Cart Total</h2>
-            <div className="flex flex-col space-y-4">
-              <div className="flex justify-between items-center">
-                <span>Subtotal</span>
-                <span className="font-semibold">${subtotal}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Shipping</span>
-                <span className="font-semibold">Free</span>
-              </div>
-              <div className="flex justify-between items-center border-t pt-4 text-lg font-bold">
-                <span>Total</span>
-                <span>${subtotal}</span>
-              </div>
-             
-              <button
-                onClick={handleClearCart}
-                className="bg-gray-500 text-white w-full py-3 mt-4 rounded-md"
-              >
-                Clear Cart
-              </button>
-              <button onClick={handleCheckout} disabled={loading} className="bg-red-500 text-white w-full py-3 mt-4 rounded-md">
-                
-                {
-                  loading ? "Processing....." : "Proceed to Checkout"
-                }
-              </button>
+        <div className="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-md h-fit">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">
+            Cart Total
+          </h2>
+          <div className="flex flex-col gap-3 text-[15px] sm:text-base">
+            <div className="flex justify-between">
+              <span>Subtotal</span>
+              <span className="font-semibold">${subtotal}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Shipping</span>
+              <span className="font-semibold text-green-600">Free</span>
+            </div>
+            <div className="border-t pt-3 flex justify-between text-lg font-bold">
+              <span>Total</span>
+              <span>${subtotal}</span>
             </div>
           </div>
+
+          <button
+            onClick={handleClearCart}
+            className="bg-gray-600 text-white w-full py-3 mt-4 rounded-md hover:bg-gray-700 transition"
+          >
+            Clear Cart
+          </button>
+          <button
+            onClick={handleCheckout}
+            disabled={loading}
+            className="bg-red-500 text-white w-full py-3 mt-3 rounded-md hover:bg-red-600 transition disabled:opacity-50"
+          >
+            {loading ? "Processing..." : "Proceed to Checkout"}
+          </button>
         </div>
       </div>
-
-      {/* Footer */}
-      {/* <footer className="bg-black text-white py-6">
-        <div className="container mx-auto px-4 flex flex-wrap justify-between text-sm">
-          <div className="w-full md:w-1/5 mb-4 md:mb-0">
-            <h3 className="font-bold">Exclusive</h3>
-            <p>Get 10% off your first order</p>
-          </div>
-          <div className="w-full md:w-1/5 mb-4 md:mb-0">
-            <h3 className="font-bold">Support</h3>
-            <p>exclusive@gmail.com</p>
-          </div>
-          <div className="w-full md:w-1/5 mb-4 md:mb-0">
-            <h3 className="font-bold">Account</h3>
-            <p>Login / Register</p>
-          </div>
-          <div className="w-full md:w-1/5 mb-4 md:mb-0">
-            <h3 className="font-bold">Quick Link</h3>
-            <p>Terms of Use</p>
-          </div>
-          <div className="w-full md:w-1/5">
-            <h3 className="font-bold">Download App</h3>
-            <img src="https://via.placeholder.com/80" alt="QR Code" />
-          </div>
-        </div>
-      </footer> */}
     </div>
   );
 };

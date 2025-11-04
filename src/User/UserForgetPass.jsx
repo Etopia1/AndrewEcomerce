@@ -38,7 +38,7 @@ const UserForgetPass = () => {
       {/* Left Image Section */}
       <div className="hidden md:flex w-1/2 h-full items-center justify-center bg-gray-50">
         <img
-          src="src/assets/download (27).jpg"
+          src="https://i.pinimg.com/1200x/eb/78/f3/eb78f364e65c4c895be7341060d382d5.jpg"
           alt="Forgot Password Visual"
           className="w-full h-full object-cover object-center shadow-xl"
         />

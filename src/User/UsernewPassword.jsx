@@ -52,7 +52,7 @@ const UsernewPassword = () => {
       {/* Left Image Section */}
       <div className="hidden md:flex w-1/2 h-full items-center justify-center bg-gray-50">
         <img
-          src="src/assets/shopping1.jpg"
+          src="https://i.pinimg.com/736x/ac/66/3a/ac663a835d3a5be7c7337a4d416f36ca.jpg"
           alt="Reset Password Visual"
           className="w-full h-full object-cover object-center rounded-none shadow-xl"
         />
