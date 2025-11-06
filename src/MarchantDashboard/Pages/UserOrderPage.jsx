@@ -168,7 +168,7 @@ const UserOrderPage = () => {
     // Fetch orders from API
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:2030/api/v1/orders", {
+        const response = await axios.get("https://andrewecomerceback.onrender.com/api/v1/orders", {
           headers: {
             Authorization: `Bearer ${token}`, // Replace with your actual token
           },
