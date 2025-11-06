@@ -149,7 +149,7 @@ const ViewOrder = () => {
     const getOrderDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:2030/api/v1/getOrderDetails/${orderId}`,
+          `https://andrewecomerceback.onrender.com/api/v1/getOrderDetails/${orderId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
