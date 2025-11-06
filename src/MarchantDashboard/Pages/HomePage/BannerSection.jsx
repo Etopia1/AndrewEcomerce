@@ -31,7 +31,7 @@ const BannerSection = () => {
         {/* Image Section */}
         <div className="md:w-1/2 flex justify-center items-center p-6 md:p-10">
           <img
-            src="src/assets/Mini_Baguette_Bag_-_Standart___Cow-removebg-preview.png"
+            src="https://s2.ezgif.com/tmp/ezgif-22ad6b383e3fcd6b.png"
             alt="Speaker"
             className="w-[85%] md:w-[70%] object-contain drop-shadow-lg"
           />

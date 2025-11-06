@@ -589,7 +589,7 @@ const Header = () => {
           <div className="relative">
             <FaUser
               className="text-gray-700 text-lg cursor-pointer hover:text-red-600 transition"
-              onMouseEnter={() => setShowUserMenu(true)}
+              onClick={() => setShowUserMenu(!showUserMenu)}
             />
             {showUserMenu && (
               <div
@@ -636,15 +636,15 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <FaBars
+          {/* <FaBars
             className="text-gray-700 text-2xl md:hidden cursor-pointer hover:text-red-600 transition"
             onClick={toggleSidebar}
-          />
+          /> */}
         </div>
       </div>
 
       {/* 🔸 Sidebar for Mobile */}
-      <div
+      {/* <div
         className={`fixed top-0 left-0 h-full bg-white shadow-lg transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-50 w-64`}
@@ -680,15 +680,15 @@ const Header = () => {
             Sign Up
           </button>
         </nav>
-      </div>
+      </div> */}
 
       {/* Overlay */}
-      {isSidebarOpen && (
+      {/* {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-40 z-40"
           onClick={toggleSidebar}
         ></div>
-      )}
+      )} */}
 
       {/* 🔸 Expired Message */}
       {expiredMessage && (
