@@ -18,7 +18,7 @@ const OrdersTable = () => {
     const fetchOrders = async () => {
       try {
         const res = await axios.get(
-          `https://andrewecomerceback.onrender.comapi/v1/merchant-orders/${merchantId}`
+          `https://andrewecomerceback.onrender.com/api/v1/merchant-orders/${merchantId}`
         );
 
         const fetchedOrders = res.data.data || [];
