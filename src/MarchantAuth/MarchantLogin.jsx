@@ -21,7 +21,7 @@ const MarchantLogin = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:2030/api/v1/Login', { email, password });
+      const response = await axios.post('https://andrewecomerceback.onrender.com/api/v1/Login', { email, password });
 
       console.log('Login successful:', response.data.data.token);
       setSuccessMessage('Login successful. Redirecting...');

@@ -479,7 +479,7 @@ const ProductsTable = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:2030/api/v1/allproducts"
+        "https://andrewecomerceback.onrender.com/api/v1/allproducts"
       );
       setProducts(res.data.data || []);
     } catch (err) {
@@ -557,6 +557,7 @@ const ProductsTable = () => {
           <thead>
             <tr className="text-gray-400 uppercase tracking-wider text-xs">
               <th className="px-6 py-3 text-left">Product</th>
+              <th className="px-6 py-3 text-left">Name</th>
               <th className="px-6 py-3 text-left">Category</th>
               <th className="px-6 py-3 text-left">Price</th>
               <th className="px-6 py-3 text-left">Actions</th>
@@ -577,7 +578,10 @@ const ProductsTable = () => {
                     alt={p.productName}
                     className="w-10 h-10 rounded-md object-cover border border-gray-700"
                   />
-                  <span className="font-medium">{p.productName}</span>
+                  {/* <span className="font-medium">{p.productName}</span> */}
+                </td>
+                <td className="px-6 py-4 text-gray-300">
+                  {p.productName }
                 </td>
                 <td className="px-6 py-4 text-gray-300">
                   {p.category?.categoryName || "—"}

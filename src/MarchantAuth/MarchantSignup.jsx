@@ -44,7 +44,7 @@ const MarchantSignup = () => {
     formData.append('profileImage', profileImage);
 
     try {
-      const response = await axios.post('http://localhost:2030/api/v1/signUp', formData, {
+      const response = await axios.post('https://andrewecomerceback.onrender.com/api/v1/signUp', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

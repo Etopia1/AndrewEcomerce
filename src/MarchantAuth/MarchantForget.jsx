@@ -21,7 +21,7 @@ const MarchatForget = () => {
 
     }else{
         setLoading(true)
-        const url = "http://localhost:2030/api/v1/forgotPassword"
+        const url = "https://andrewecomerceback.onrender.com/api/v1/forgotPassword"
         const data = {email}
         axios.post(url, data)
         .then((res)=>{

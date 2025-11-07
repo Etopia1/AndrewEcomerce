@@ -42,6 +42,7 @@ import UserPrivate2 from './UserPrivate2'
 import Trackpage from './RiderPage/Trackpage'
 import Modal from './components/Modal/Modal'
 import UsernewPassword from './User/UsernewPassword'
+import OrderViewPage from './MarchantDashboard/Marchantpages/OrderViewPage '
 const RoutePageNew = () => {
   useEffect(() => {
         AOS.init({
@@ -80,6 +81,7 @@ const RoutePageNew = () => {
             <Route path='/product' element={<ProductPage/>}/>,
             // <Route path='/viewProduct/:id' element={<ProductView/>}/>,
             <Route path='/marchantOrder' element={< OrdersPage/>}/>,
+            <Route path='/viewmachOrder/:id' element={< OrderViewPage/>}/>,
             <Route path='/settings' element={< SettingPage/>}/>
 
         ]}/>

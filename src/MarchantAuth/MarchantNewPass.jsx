@@ -24,7 +24,7 @@ const MarchantNewPass = () => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:2030/api/v1/resetpassword/${token}`, {
+      const response = await axios.post(`https://andrewecomerceback.onrender.com/api/v1/resetpassword/${token}`, {
         password,
       });
       setSuccessMessage('Password reset successfully. You can now log in.');

@@ -16,7 +16,7 @@ const Header = () => {
     setLoading(true);
 
     axios
-      .get("https://new-ecomer-ce-app-backend2.vercel.app/api/v1/viewcart", {
+      .get("https://andrewecomerceback.onrender.com/api/v1/viewcart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -208,7 +208,7 @@ const MarchantForgetpassOtp = () => {
   const [resend, setResend] = useState(false);
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState(false);
-  const url = 'http://localhost:2030/api/v1';
+  const url = 'https://andrewecomerceback.onrender.com/api/v1';
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -44,7 +44,7 @@ const Profile = () => {
     const fetchMerchant = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:2030/api/v1/merchant-getone/${marchantId}`,
+          `https://andrewecomerceback.onrender.com/api/v1/merchant-getone/${marchantId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
