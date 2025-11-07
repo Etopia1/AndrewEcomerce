@@ -66,7 +66,7 @@ const CategoryDistributionChart = () => {
   useEffect(() => {
     const fetchCategoryDistribution = async () => {
       try {
-        const response = await axios.get("http://localhost:2030/api/v1/category-distribution");
+        const response = await axios.get("https://andrewecomerceback.onrender.com/api/v1/category-distribution");
         const formattedData = response.data.data.map((item) => ({
           name: item.name,
           value: item.totalSales,
